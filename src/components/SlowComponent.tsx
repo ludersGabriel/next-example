@@ -4,8 +4,8 @@ import {
   Pokemon,
   getPokemon,
 } from '@/api-layer/pokemon-api/queries/pokemon.query';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
+import PokemonComponent from './pokemons/Pokemon';
 
 function blockSync(ms: number) {
   const start = Date.now();
@@ -41,18 +41,7 @@ export default function SlowComponent() {
     return <h1>Loading...</h1>;
   }
 
-  return (
-    <div>
-      <h1>{pokemon.name}</h1>
-      <Image
-        src={pokemon.sprites.front_default}
-        alt={pokemon.name}
-        priority
-        width={300}
-        height={300}
-      />
-    </div>
-  );
+  return <PokemonComponent pokemon={pokemon} />;
 }
 
 export const MemoSlow = React.memo(SlowComponent);

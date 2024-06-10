@@ -74,6 +74,10 @@ export default function FormPage() {
           title: 'ref example',
           lp: { href: '/form-ref' },
         }}
+        prev={{
+          title: 'pokemon',
+          lp: { href: '/pokemon' },
+        }}
       />
     </main>
   );

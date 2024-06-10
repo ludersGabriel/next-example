@@ -21,7 +21,8 @@ export default async function Home() {
       />
 
       <PrevNextComponent
-        prev={{ title: 'home', lp: { href: '/' } }}
+        prev={{ title: 'ref example', lp: { href: '/form-ref' } }}
+        next={{ title: 'home', lp: { href: '/' } }}
       />
     </main>
   );

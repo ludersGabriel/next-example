@@ -20,14 +20,17 @@ const defaultFormData: FormData = {
 const keys = Object.keys(defaultFormData) as (keyof FormData)[];
 
 export default function FormPage() {
-  const formRefs = useRef([]);
-
-  useEffect(() => console.log(formRefs), []);
+  const formRefs = [
+    createRef<HTMLInputElement>(),
+    createRef<HTMLInputElement>(),
+    createRef<HTMLInputElement>(),
+  ];
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(formRefs);
+    const values = formRefs.map((ref) => ref.current?.value);
+    console.log(values);
   };
 
   return (
@@ -36,26 +39,22 @@ export default function FormPage() {
         className='flex flex-col gap-5 w-4/5'
         onSubmit={handleSubmit}
       >
-        {keys.map((name, i) => {
-          return (
-            <div key={name} className='flex flex-col gap-2'>
-              <label htmlFor={name}>{name.toUpperCase()}</label>
-              <input
-                id={name}
-                name={name}
-                type={name === 'password' ? 'password' : 'text'}
-                placeholder={`Enter ${name}`}
-                className='bg-black border p-2 rounded'
-                ref={(el) => (formRefs.current[i] = el)}
-              />
-            </div>
-          );
-        })}
+        {keys.map((name, i) => (
+          <div key={name} className='flex flex-col gap-2'>
+            <label htmlFor={name}>{name.toUpperCase()}</label>
+            <input
+              id={name}
+              name={name}
+              type={name === 'password' ? 'password' : 'text'}
+              placeholder={`Enter ${name}`}
+              className='bg-black border p-2 rounded'
+              ref={formRefs[i]}
+            />
+          </div>
+        ))}
 
         <ButtonComponent type='submit'>Submit</ButtonComponent>
       </form>
-
-      {/* <FormComponent /> */}
 
       {/* <SlowComponent /> */}
       {/* <MemoSlow /> */}
