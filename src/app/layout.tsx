@@ -7,18 +7,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isLogged = true;
-
   return (
     <html lang='en'>
       <body>
-        {isLogged ?
-          <>
-            <Header />
-            {children}
-            <Footer />
-          </>
-        : null}
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
